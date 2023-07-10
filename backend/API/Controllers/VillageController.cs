@@ -32,7 +32,9 @@ namespace API.Controllers
             {
                 return Ok("zero villages");
             }
-            return await _context.Villages.ToListAsync();
+            var villages = await _context.Villages.Include(v => v.Amenities).ToListAsync();
+
+            return villages;
         }
 
         // GET: api/Village/5
@@ -43,12 +45,13 @@ namespace API.Controllers
           {
               return NotFound();
           }
-            var village = await _context.Villages.FindAsync(id);
+            var village = await _context.Villages.Include(v => v.Amenities).FirstOrDefaultAsync(v => v.id == id);
 
             if (village == null)
             {
                 return NotFound();
             }
+
 
             return village;
         }

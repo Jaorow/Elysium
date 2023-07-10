@@ -9,7 +9,7 @@ public class Village{
 
     public string? description { get; set; }
 
-    public string? imageURL { get; set; }
+    public string? imageUrl { get; set; }
 
     public string? location { get; set; }
 
@@ -31,10 +31,10 @@ public class Amenities{
 
     public string? description { get; set; }
 
-    public string? emojiURL { get; set; }
+    public string? emojiUrl { get; set; }
 
     public long? villageId { get; set; }
-    
+
     [JsonIgnore]
     public Village? Village { get; set; }
 }
