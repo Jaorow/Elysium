@@ -1,0 +1,152 @@
+[
+    {
+        "name": "Golden Acres Retirement Village",
+        "description": "Experience the golden years in a peaceful and vibrant community.",
+        "imageUrl": "https://example.com/golden-acres.jpg",
+        "location": "Serenity Valley",
+        "address": "456 Elderly Lane",
+        "phone": "+1 555-123-4567",
+        "email": "info@goldenacres.com",
+        "website": "https://goldenacres.com",
+        "amenities": [
+            {
+                "name": "Swimming Pool",
+                "description": "Enjoy a refreshing swim in our sparkling pool.",
+                "emojiUrl": "https://example.com/emoji/swimming-pool.png"
+            },
+            {
+                "name": "Gym",
+                "description": "Stay active and fit in our state-of-the-art gym.",
+                "emojiUrl": "https://example.com/emoji/gym.png"
+            },
+            {
+                "name": "Library",
+                "description": "Escape into the world of books and knowledge in our library.",
+                "emojiUrl": "https://example.com/emoji/library.png"
+            },
+            {
+                "name": "Billiards Room",
+                "description": "Enjoy friendly competitions and leisurely games in our billiards room.",
+                "emojiUrl": "https://example.com/emoji/billiards-room.png"
+            }
+        ]
+    },
+    {
+        "name": "Silver Meadows Retirement Village",
+        "description": "Discover the beauty of retirement surrounded by nature's serenity.",
+        "imageUrl": "https://example.com/silver-meadows.jpg",
+        "location": "Tranquil Woods",
+        "address": "789 Seniors Street",
+        "phone": "+1 555-987-6543",
+        "email": "hello@silvermeadows.com",
+        "website": "https://silvermeadows.com",
+        "amenities": [
+            {
+                "name": "Walking Trails",
+                "description": "Enjoy scenic walks along our picturesque trails.",
+                "emojiUrl": "https://example.com/emoji/walking-trails.png"
+            },
+            {
+                "name": "Restaurant",
+                "description": "Indulge in delicious meals prepared by our talented chefs.",
+                "emojiUrl": "https://example.com/emoji/restaurant.png"
+            },
+            {
+                "name": "Yoga Studio",
+                "description": "Achieve balance and serenity through yoga in our tranquil studio.",
+                "emojiUrl": "https://example.com/emoji/yoga.png"
+            }
+        ]
+    },
+    {
+        "name": "Harmony Gardens Retirement Village",
+        "description": "Find peace and harmony in a serene community dedicated to your well-being.",
+        "imageUrl": "https://example.com/harmony-gardens.jpg",
+        "location": "Tranquility Lane",
+        "address": "321 Peaceful Road",
+        "phone": "+1 555-789-0123",
+        "email": "welcome@harmonygardens.com",
+        "website": "https://harmonygardens.com",
+        "amenities": [
+            {
+                "name": "Arts & Crafts Studio",
+                "description": "Unleash your creativity in our dedicated arts and crafts studio.",
+                "emojiUrl": "https://example.com/emoji/arts-crafts.png"
+            },
+            {
+                "name": "Yoga Studio",
+                "description": "Achieve balance and serenity through yoga in our tranquil studio.",
+                "emojiUrl": "https://example.com/emoji/yoga.png"
+            },
+            {
+                "name": "Gardening Club",
+                "description": "Unleash your green thumb and join our thriving gardening community.",
+                "emojiUrl": "https://example.com/emoji/gardening-club.png"
+            },
+            {
+                "name": "Swimming Pool",
+                "description": "Enjoy a refreshing swim in our sparkling pool.",
+                "emojiUrl": "https://example.com/emoji/swimming-pool.png"
+            }
+        ]
+    },
+    {
+        "name": "Sunset Bay Retirement Village",
+        "description": "Embrace breathtaking sunsets and a vibrant community by the bay.",
+        "imageUrl": "https://example.com/sunset-bay.jpg",
+        "location": "Coastal Haven",
+        "address": "987 Seaside Boulevard",
+        "phone": "+1 555-321-4567",
+        "email": "info@sunsetbayvillage.com",
+        "website": "https://sunsetbayvillage.com",
+        "amenities": [
+            {
+                "name": "Restaurant",
+                "description": "Indulge in delicious meals prepared by our talented chefs.",
+                "emojiUrl": "https://example.com/emoji/restaurant.png"
+            },
+            {
+                "name": "Gardening Club",
+                "description": "Unleash your green thumb and join our thriving gardening community.",
+                "emojiUrl": "https://example.com/emoji/gardening-club.png"
+            },
+            {
+                "name": "Swimming Pool",
+                "description": "Enjoy a refreshing swim in our sparkling pool.",
+                "emojiUrl": "https://example.com/emoji/swimming-pool.png"
+            }
+        ]
+    },
+    {
+        "name": "Evergreen Pines Retirement Village",
+        "description": "Experience the tranquility of nature in an evergreen oasis for retirees.",
+        "imageUrl": "https://example.com/evergreen-pines.jpg",
+        "location": "Peaceful Forest",
+        "address": "555 Elderly Avenue",
+        "phone": "+1 555-654-3210",
+        "email": "hello@evergreenpines.com",
+        "website": "https://evergreenpines.com",
+        "amenities": [
+            {
+                "name": "Billiards Room",
+                "description": "Enjoy friendly competitions and leisurely games in our billiards room.",
+                "emojiUrl": "https://example.com/emoji/billiards-room.png"
+            },
+            {
+                "name": "Nature Trails",
+                "description": "Immerse yourself in nature's beauty on our scenic walking trails.",
+                "emojiUrl": "https://example.com/emoji/nature-trails.png"
+            },
+            {
+                "name": "Library",
+                "description": "Escape into the world of books and knowledge in our library.",
+                "emojiUrl": "https://example.com/emoji/library.png"
+            },
+            {
+                "name": "Gym",
+                "description": "Stay active and fit in our state-of-the-art gym.",
+                "emojiUrl": "https://example.com/emoji/gym.png"
+            }
+        ]
+    }
+]

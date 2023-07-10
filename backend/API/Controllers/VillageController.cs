@@ -103,6 +103,47 @@ namespace API.Controllers
             return CreatedAtAction("GetVillage", new { id = village.id }, village);
         }
 
+        //POST: api/Village/bulk
+        [HttpPost("bulk")]
+        public async Task<ActionResult<Village>> PostVillageBulk(List<Village> villages)
+        {
+            if (_context.Villages == null)
+            {
+                return Problem("Entity set 'VillageContext.Villages'  is null.");
+            }
+            var count = 0;
+            foreach (var village in villages)
+            {
+                _context.Villages.Add(village);
+                count ++;
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok(count + " villages added");
+        }
+
+        // POST: api/Village/5/Amenities
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // update amenities for a village
+        [HttpPost("{id}/Amenities")]
+        public async Task<ActionResult<Amenities>> PostAmenities(long id, Amenities amenities)
+        {
+            if (_context.Villages == null)
+            {
+                return Problem("Entity set 'VillageContext.Villages'  is null.");
+            }
+            var village = await _context.Villages.FindAsync(id);
+            if (village == null)
+            {
+                return NotFound();
+            }
+            amenities.villageId = id;
+            _context.Amenities.Add(amenities);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetVillage", new { id = amenities.id }, amenities);
+        }
+
         // DELETE: api/Village/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVillage(long id)
