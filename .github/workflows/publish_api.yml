@@ -25,11 +25,14 @@ jobs:
       - name: dotnet publish
         run: dotnet publish backend/API -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
+      - name: Move published files to root directory
+        run: mv ${{env.DOTNET_ROOT}}/myapp/* .
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,4 +54,4 @@ jobs:
           app-name: 'Elysium'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_693CD9E92DBF4621AE2301AD59E9417E }}
-          package: backend/API
+          package: .
