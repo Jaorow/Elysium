@@ -1,12 +1,24 @@
 import React from 'react';
 import './App.css';
-import { getVillages } from './services/API';
+
+import VillageCards from './VillageCards';
+import Header from './header';
 
 function App() {
+
+
   return (
+
     <div className="App">
-      help
-      <button onClick={getVillages}>Click me</button>
+
+      <div className="navbar">
+        <Header />
+      </div>
+      
+      {/* <h1 className =" text-3xl underline "> Welcome to elysium </h1> */}
+      
+      <VillageCards />
+
     </div>
   );
 }

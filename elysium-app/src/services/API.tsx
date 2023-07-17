@@ -1,17 +1,20 @@
-import axios from 'axios';
+import { Village } from '../models/Village';
+
 
 var connectionString = 'http://elysium.azurewebsites.net/api/Village';
-// api endpoint: http://elysium.azurewebsites.net/api/Village
 
-export const getVillages = () =>{
-    axios.get(connectionString)
-    .then(response => {
-        // Handle the response data
-        console.log(response.data);
-        return response.data;
-    })
-    .catch(error => {
-        // Handle any errors
-        console.error(error);
-    });
+
+export const getVillages = async (): Promise<Village[]> => {
+    const response = await fetch(connectionString);
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
 }
+
+
+
+  
