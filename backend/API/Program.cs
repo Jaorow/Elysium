@@ -9,8 +9,27 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<VillageContext>(options =>
-    options.UseInMemoryDatabase("Data Source=list.db"));
+builder.Services.AddScoped<VillageContext>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<VillageContext>()
+        .UseInMemoryDatabase("Data Source=village.db");
+    return new VillageContext(optionsBuilder.Options);
+});
+
+builder.Services.AddScoped<UserContext>(provider =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<UserContext>()
+        .UseInMemoryDatabase("Data Source=user.db");
+    return new UserContext(optionsBuilder.Options);
+});
+
+
+// builder.Services.AddDbContext<VillageContext>(options =>
+//     options.UseInMemoryDatabase("Data Source=village.db"));
+
+// builder.Services.AddDbContext<UserContext>(options =>
+//     options.UseInMemoryDatabase("Data Source=user.db"));
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
