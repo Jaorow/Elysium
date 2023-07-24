@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getVillages } from './services/API';
-import { Village } from './models/Village';
+import { getVillages } from '../services/API';
+import { Village } from '../models/Village';
 
 function VillageCards() {
   const [villages, setVillages] = useState<Village[]>([]);
@@ -12,6 +12,7 @@ function VillageCards() {
         setVillages(fetchedVillages);
       } catch (error) {
         console.error(error);
+		return <div>Error: there was an error fetching data </div>;
       }
     };
 

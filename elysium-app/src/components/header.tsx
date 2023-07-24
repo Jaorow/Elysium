@@ -1,7 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, StarIcon } from '@heroicons/react/24/outline'
-import photo from '../src/img/logo.png'
+import photo from '../img/logo.png'
+import LoginPopup from './loginPopup'
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -14,12 +15,28 @@ function classNames(...classes: string[]) {
 }
 
 export default function Header() {
-  const [loggedIn, setLoggedIn] = useState(true) // Set the initial login state here
+  const [loggedIn, setLoggedIn] = useState(false) // Set the initial login state here
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+
 
   const handleLogout = () => {
     // Implement your logout logic here
     setLoggedIn(false)
   }
+
+  const handleLogin = () =>{
+    // Implement your login logic here
+    // login popup here...
+    console.log("login popup");
+    setLoginPopupOpen(true);
+  }
+
+  const handleSuccessfulLogin = () => {
+    // This function will be passed to the LoginPopup
+    // and called when login is successful
+    setLoggedIn(true);
+    setLoginPopupOpen(false); // Close the login popup after successful login
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -64,6 +81,12 @@ export default function Header() {
                   </div>
                 </div>
               </div>
+              <LoginPopup
+                logged_in={loggedIn}
+                open={isLoginPopupOpen}
+                onClose={() => setLoginPopupOpen(false)}
+                onLoginSuccess={handleSuccessfulLogin} // Pass the function as a prop
+              />
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {loggedIn ? ( // Render profile dropdown or login button based on the login state
                   <>
@@ -121,6 +144,7 @@ export default function Header() {
                               <a
                                 href="#"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                onClick={handleLogout}
                               >
                                 Sign out
                               </a>
@@ -133,8 +157,8 @@ export default function Header() {
                 ) : (
                   <button
                     type="button"
-                    className="rounded-md bg-gray-800 text-sm px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    onClick={handleLogout}
+                    className="rounded-md bg-blue-600 text-sm px-4 py-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    onClick={handleLogin}
                   >
                     Login
                   </button>

@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 
-import VillageCards from './VillageCards';
-import Header from './header';
+import VillageCards from './components/VillageCards';
+import Header from './components/header';
 
 function App() {
 
@@ -15,7 +15,6 @@ function App() {
         <Header />
       </div>
       
-      {/* <h1 className =" text-3xl underline "> Welcome to elysium </h1> */}
       
       <VillageCards />
 
