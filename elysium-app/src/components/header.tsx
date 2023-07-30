@@ -1,9 +1,11 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, StarIcon } from '@heroicons/react/24/outline'
 import photo from '../img/logo.png'
 import LoginPopup from './loginPopup'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie';
+
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -31,6 +33,17 @@ export default function Header() {
     console.log("login popup");
     setLoginPopupOpen(true);
   }
+
+  useEffect(() => {
+    // Check for a valid JWT when the app starts
+    const jwt = Cookies.get('jwt');
+    console.log(jwt);
+    if (jwt == "test") {
+      // Implement your logic to verify the JWT's validity on the server-side
+      // If the JWT is valid, set the user as logged in
+      setLoggedIn(true)
+    }
+  }, []);
 
   const handleSuccessfulLogin = () => {
     // This function will be passed to the LoginPopup

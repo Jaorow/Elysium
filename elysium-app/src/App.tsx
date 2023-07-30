@@ -16,16 +16,7 @@ import Register from './pages/register';
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    // Check for a valid JWT when the app starts
-    const jwt = Cookies.get('jwt');
-    console.log(jwt);
-    if (jwt == "test") {
-      // Implement your logic to verify the JWT's validity on the server-side
-      // If the JWT is valid, set the user as logged in
-      handleLoginSuccess();
-    }
-  }, []);
+
 
   const handleLoginSuccess = () => {
     setLoggedIn(true);
