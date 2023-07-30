@@ -2,8 +2,8 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { getLogin } from '../services/API'
-import register from '../register'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 interface LoginPopupProps {
 		open: boolean;
@@ -18,10 +18,12 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ open, onClose, onLoginSuccess }
 				console.log("login button clicked...");
 				const username = document.getElementById("username") as HTMLInputElement;
 				const password = document.getElementById("password") as HTMLInputElement;
-				const isLoggedIn = await getLogin(username.value, password.value);
+				const LoginResponse = await getLogin(username.value, password.value);
 
-				if (isLoggedIn) {
+				if (LoginResponse.isLoggedIn) {
 					console.log("login success");
+					// Save the JWT in a cookie with a 7-day expiration (adjust as needed)
+					Cookies.set('jwt', LoginResponse.jwt, { expires: 7 });
 					onLoginSuccess();
 					onClose();
 				} else {
@@ -106,7 +108,11 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ open, onClose, onLoginSuccess }
 												>
 													Sign In
 												</button>
-											
+												
+												<div className="text-center">
+													<Link to="/register">Can't login?</Link> --- <Link onClick={onClose} to="./pages/register.tsx">register</Link>
+												</div>
+
 											</div>
 										</form>
 									</div>

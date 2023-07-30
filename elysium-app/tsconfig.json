@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "src/register.tsx"  ]
+, "src/pages/register.tsx"  ]
 }

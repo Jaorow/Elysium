@@ -6,5 +6,7 @@ public class User{
 
     public string? password { get; set; }
 
+    public string? jwt { get; set; }
+
     public List<Village> villages { get; set; } = new List<Village>();
 }
