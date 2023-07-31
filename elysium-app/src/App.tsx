@@ -1,40 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from './components/header';
-import loginPopup from './components/loginPopup';
+import Compare from "./pages/Compare";
 import VillageCards from './components/VillageCards';
-import Register from './pages/register';
+import Register from './pages/Register';
+import Help from './pages/Help';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 
-
-{/* <div className="App">
-
-</div> */}
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
 
+	return (
+				<Router>
+				<div className="navbar">
+					<Header />
+				</div>
 
-
-  const handleLoginSuccess = () => {
-    setLoggedIn(true);
-  };
-
-
-  return (
-        <Router>
-        <div className="navbar">
-          <Header />
-        </div>
-
-        <Routes>
-          <Route path="/" element={<VillageCards />} />
-          <Route path="/Register" element={<Register />} />
-        </Routes>
-      </Router>
-  );
+				<Routes>
+					<Route path="/" element={<VillageCards />} />
+					<Route path="/Register" element={<Register />} />
+					<Route path="/Compare" element={<Compare />} />
+					<Route path="/Help" element={<Help />} />
+					<Route path="/Profile" element={<Profile />} />
+					<Route path="/Settings" element={<Settings />} />
+				</Routes>
+			</Router>
+	);
 }
 
 

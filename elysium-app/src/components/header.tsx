@@ -9,8 +9,8 @@ import Cookies from 'js-cookie';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Compare', href: '#', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'Compare', href: '/Compare', current: false },
+  { name: 'Help', href: '/Help', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -24,6 +24,8 @@ export default function Header() {
 
   const handleLogout = () => {
     // Implement your logout logic here
+    Cookies.set('jwt', "", { expires: 0 });
+
     setLoggedIn(false)
   }
 
@@ -37,8 +39,7 @@ export default function Header() {
   useEffect(() => {
     // Check for a valid JWT when the app starts
     const jwt = Cookies.get('jwt');
-    console.log(jwt);
-    if (jwt == "test") {
+    if (jwt === "test") {
       // Implement your logic to verify the JWT's validity on the server-side
       // If the JWT is valid, set the user as logged in
       setLoggedIn(true)
@@ -104,13 +105,15 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {loggedIn ? ( // Render profile dropdown or login button based on the login state
                   <>
-                    <button
-                      type="button"
-                      className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span className="sr-only">View Favorites</span>
-                      <StarIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                  <Link to="/Compare">
+                      <button
+                        type="button"
+                        className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only">View Favorites</span>
+                        <StarIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </Link>
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
@@ -135,22 +138,22 @@ export default function Header() {
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="#"
+                              <Link
+                                to="/Profile"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                               >
                                 Your Profile
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="#"
+                              <Link
+                                to="/Settings"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                               >
                                 Settings
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>

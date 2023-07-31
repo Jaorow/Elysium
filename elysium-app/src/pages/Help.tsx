@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import '../App.css';
 
 
-const Register: React.FC = () => {
+const Help: React.FC = () => {
   return (
     <div className="page">
-      <h1>register</h1>
+
+      <h1>Help</h1>
+
+
       <Link to="/">HOME</Link>
     </div>
   );
 };
   
-export default Register;
+export default Help;

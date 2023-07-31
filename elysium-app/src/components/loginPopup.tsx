@@ -110,7 +110,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ open, onClose, onLoginSuccess }
 												</button>
 												
 												<div className="text-center">
-													<Link to="/register">Can't login?</Link> --- <Link onClick={onClose} to="./pages/register.tsx">register</Link>
+													<Link to="/Register">Can't login?</Link> --- <Link onClick={onClose} to="/Register">register</Link>
 												</div>
 
 											</div>
