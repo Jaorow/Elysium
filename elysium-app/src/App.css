@@ -15,3 +15,45 @@
   padding-top: 80px;
   text-align: center;
 }
+
+.header-logo{
+  transform: translate(-30px,30px) scale(4);
+}
+
+.navbar-background{
+  background-color: #282D39;
+}
+
+/* 
+* Login form... 
+*/
+
+.form{
+    background-color: white;
+    border-radius: 5px;
+    width: 550px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.form-body{
+    text-align: left;
+    padding: 20px 10px;
+}
+
+.form-body > *{
+    padding: 5px;
+}
+
+.form__label{
+    width: 40%;
+}
+
+.form_input{
+    width: 60%;
+    border: black 1px solid;
+}
+
+.footer{
+    text-align: center;
+}

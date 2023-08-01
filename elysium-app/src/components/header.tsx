@@ -1,14 +1,16 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, StarIcon } from '@heroicons/react/24/outline';
-import photo from '../img/logo.png';
+import photo from '../img/elysium-logo.png';
 import LoginPopup from './loginPopup';
 import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import '../App.css';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
+
 
 export default function Header() {
   const [loggedIn, setLoggedIn] = useState(false); // Set the initial login state here
@@ -60,7 +62,7 @@ export default function Header() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="navbar-background">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -78,7 +80,7 @@ export default function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img className="h-8 w-auto" src={photo} alt="Your Company" />
+                  <img className="h-8 w-auto header-logo" src={photo} alt="elysium" />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">

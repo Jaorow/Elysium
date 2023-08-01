@@ -78,7 +78,6 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ open, onClose, onLoginSuccess }
 										Login
 									</Dialog.Title>
 									<div className="mt-2">
-										{/* Your login form goes here */}
 										<form>
 											<div>
 												<label htmlFor="username">Username</label>

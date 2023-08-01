@@ -97,6 +97,38 @@ namespace API.Controllers
             return CreatedAtAction("GetUser", new { id = user.id }, user);
         }
 
+        // GET: api/User/username
+        [HttpGet("username/{username}")]
+        public async Task<ActionResult<User>> GetUserByUsername(string username)
+        {
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+          var user = await _context.Users.Include(u => u.villages).FirstOrDefaultAsync(u => u.username == username);
+          if (user == null)
+          {
+              return NotFound();
+          }
+          return user;
+        }
+
+        // GET: api/User/usernames
+        [HttpGet("usernames")]
+        public async Task<ActionResult<IEnumerable<string>>> GetUsernames()
+        {
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+          var usernames = await _context.Users.Select(u => u.username).ToListAsync();
+          if (usernames == null)
+          {
+              return NotFound();
+          }
+          return usernames;
+        }
+
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
