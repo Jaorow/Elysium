@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Header from './components/header';
+import Header from './components/navBar';
 import Compare from "./pages/Compare";
 import VillageCards from './components/VillageCards';
 import Register from './pages/Register';

@@ -19,8 +19,20 @@ interface LoginResponse {
 	isLoggedIn: boolean;
 	jwt: string;
   }
-  
+
+  interface User{
+	username: string;
+	password: string;
+	jwt: string;
+  }
+
   const getLogin = async (username: string, password: string): Promise<LoginResponse> => {
+	const response = await fetch(connectionString + "Users");
+	if (!response.ok) {
+		throw new Error(response.statusText);
+	}
+
+	
 	if (username === "test" && password === "test") {
 	  // Replace the 'test' value with the actual JWT obtained from your server
 	  const jwt = "test";
