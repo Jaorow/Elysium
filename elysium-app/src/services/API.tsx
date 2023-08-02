@@ -18,6 +18,7 @@ const getVillages = async (): Promise<Village[]> => {
 interface LoginResponse {
 	isLoggedIn: boolean;
 	jwt: string;
+	username: string;
   }
 
   interface User{
@@ -27,71 +28,84 @@ interface LoginResponse {
   }
 
   const getLogin = async (username: string, password: string): Promise<LoginResponse> => {
-	const response = await fetch(connectionString + "Users");
+
+	const response = await fetch(connectionString + "User/username/"+username);
+
+	console.log("Login endpoint called")
 	if (!response.ok) {
-		throw new Error(response.statusText);
+	  	console.log("Login failed as response not ok")
+		return { isLoggedIn: false, jwt: "", username: "" };
 	}
 
-	
-	if (username === "test" && password === "test") {
+	const data = await response.json();
+	const user: User = data as User;
+
+	console.log(user);
+
+	if (user.password === password) {
 	  // Replace the 'test' value with the actual JWT obtained from your server
-	  const jwt = "test";
-	  return { isLoggedIn: true, jwt };
+	  const jwt = user.jwt;
+	  console.log("Login successful - "+{ isLoggedIn: true, jwt: jwt, username: username })
+	  return { isLoggedIn: true, jwt: jwt, username: username };
 	} else {
-	  return { isLoggedIn: false, jwt: "" };
+	  return { isLoggedIn: false, jwt: "", username: "" };
 	}
   };
-  
-	// const response = await fetch(connectionString + "Users");
-	// if (!response.ok) {
-	//     throw new Error(response.statusText);
-	// }
 
-	// const data = await response.json();
-	// console.log(data);
-	// return data;
-  
+  const getJwtForUser = async (username: string): Promise<string> => {
+	const response = await fetch(connectionString + "User/username/"+username);
+	const data = await response.json();
+	const user: User = data as User;
+	return user.jwt;
+  }
+
+
   interface registerResponse {
 	exists: boolean;
 	jwt: string;
+	username : string;
   }
 
 
   const postNewUser = async (username: string, password: string): Promise<registerResponse> => {
-	const usernames = await fetch(connectionString + "usernames");
+	console.log("new user being posted");
   
-	if (username in usernames) {
-	  return { exists: true, jwt: "",};
+	try {
+	  const usernamesResponse = await fetch(connectionString + "User/usernames");
+	  const usernames: string[] = await usernamesResponse.json();
+	  const jwt = generateRandomString(64);
+	  console.log(usernames);
 
-	} if (username !in usernames) {
-		fetch(connectionString+"User", {
-			// Update this URL to match your endpoint
-			method: "POST",
-			// Origin: "http://localhost:5127",
-			headers: {
-			  "Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				"username": username,
-				"password": password,
-				"jwt": generateRandomString(64),
-			}),
-		  })
-			.then((response) => response.json())
-			.then((data) => {
-			  console.log("Register Success:", data);
-			  return { exists: false, jwt: data.jwt,};
-			})
-			.catch((error) => {
-			  console.error("There was an error!", error);
-			  // Handle error (e.g., show an error message to the user)
-			});
-	  return { exists: false, jwt: "",};
+	  if (usernames.includes(username)) {
+		console.log("Username already exists");
+		return { exists: true, jwt: "", username : "" };
+
+	  } else {
+		console.log("Username does not exist");
+		const response = await fetch(connectionString + "User", {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify({
+			username: username,
+			password: password,
+			jwt: jwt,
+		  }),
+		});
+  
+		const data = await response.json();
+		console.log("Register Success:", data);
+		return { exists: false, jwt: data.jwt, username: username };
+	  }
+	} catch (error) {
+	  console.error("There was an error!", error);
+	  // Handle error (e.g., show an error message to the user)
+	  return { exists: false, jwt: "", username : "" };
 	}
+  };
 
-	return { exists: false, jwt: "",};
 
-  }
   function generateRandomString(length: number) {
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	let randomString = '';
@@ -102,4 +116,4 @@ interface LoginResponse {
 	return randomString;
   }
 
-export { getVillages, getLogin };
+export { getVillages, getLogin, getJwtForUser, postNewUser };

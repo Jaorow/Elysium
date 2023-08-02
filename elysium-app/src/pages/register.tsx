@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+// import { Link, redirect } from "react-router-dom";
 import '../App.css';
-
+import { postNewUser } from '../services/API';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -19,15 +23,28 @@ const Register: React.FC = () => {
         }));
       };
     
-      const handleSubmit = (event: React.FormEvent) => {
+      const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         // You can perform registration logic here using the formData
         console.log('Registration form submitted:', formData);
+
+        const response = await postNewUser(formData.username, formData.password);
         // Reset the form after successful registration
-        setFormData({
-          username: '',
-          password: '',
-        });
+        if (response.exists){
+          alert("Username already exists");
+        } else {
+          setFormData({
+            username: '',
+            password: '',
+          });
+
+          Cookies.set('jwt', response.jwt, { expires: 7 });
+          Cookies.set('username', response.username, { expires: 7 });
+          navigate('/');
+          window.location.reload();
+        }
+
+
       };
   return (
     <div className="page">
@@ -101,3 +118,7 @@ const Register: React.FC = () => {
 };
   
 export default Register;
+function forceUpdate() {
+  throw new Error('Function not implemented.');
+}
+

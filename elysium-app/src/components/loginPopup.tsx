@@ -11,12 +11,10 @@ interface LoginPopupProps {
   onLoginSuccess: () => void;
 }
 
-const LoginPopup: React.FC<LoginPopupProps> = ({
-  open,
-  onClose,
-  onLoginSuccess,
-}) => {
+const LoginPopup: React.FC<LoginPopupProps> = ({ open, onClose, onLoginSuccess }) => {
+
   async function checkLogin(): Promise<void> {
+
 	console.log('login button clicked...');
 	const username = document.getElementById('username') as HTMLInputElement;
 	const password = document.getElementById('password') as HTMLInputElement;
@@ -26,12 +24,15 @@ const LoginPopup: React.FC<LoginPopupProps> = ({
 	  console.log('login success');
 	  // Save the JWT in a cookie with a 7-day expiration (adjust as needed)
 	  Cookies.set('jwt', LoginResponse.jwt, { expires: 7 });
+	  Cookies.set('username', LoginResponse.username, { expires: 7 });
 	  onLoginSuccess();
 	  onClose();
+
 	} else {
 	  console.log('login failed');
 	}
   }
+
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
     if (event.key === 'Enter') {
       checkLogin();

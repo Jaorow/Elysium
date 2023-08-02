@@ -7,6 +7,7 @@ import LoginPopup from './loginPopup';
 import { Link, redirect, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../App.css';
+import { getJwtForUser } from '../services/API';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -22,6 +23,7 @@ export default function Header() {
   const handleLogout = () => {
     // Implement your logout logic here
     Cookies.set('jwt', '', { expires: 0 });
+    Cookies.set('username', '', { expires: 0 });
     setLoggedIn(false);
     redirect("/");
   };
@@ -35,14 +37,31 @@ export default function Header() {
 
   useEffect(() => {
     // Check for a valid JWT when the app starts
-    const jwt = Cookies.get('jwt');
-    const userID = Cookies.get('userID');
-    if (jwt === 'test') {
-      // Implement your logic to verify the JWT's validity on the server-side
-      // If the JWT is valid, set the user as logged in
-      setLoggedIn(true);
-    }
+    checkJwtForUser().then((result) => {
+      setLoggedIn(result);
+    });
+
   }, []);
+
+  async function checkJwtForUser() {
+    if (Cookies.get('username') === "" || Cookies.get('username') === undefined){
+      return false;
+    }
+    const jwtFromCookie = Cookies.get('jwt');
+    const jwtForUser = await getJwtForUser(Cookies.get('username') ?? '');
+
+    console.log(jwtFromCookie);
+    console.log(jwtForUser);
+  
+    if (Cookies.get('username') === '' || Cookies.get('username') === undefined) {
+      return false;
+    }
+    if (jwtFromCookie === jwtForUser) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   // Move navigation array inside the component
   const navigation = [
@@ -150,7 +169,7 @@ export default function Header() {
                                 to="/Profile"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                               >
-                                Your Profile
+                                Hi {Cookies.get('username')}
                               </Link>
                             )}
                           </Menu.Item>
@@ -167,7 +186,6 @@ export default function Header() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                 onClick={handleLogout}
                               >
