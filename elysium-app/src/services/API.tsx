@@ -116,4 +116,9 @@ interface LoginResponse {
 	return randomString;
   }
 
-export { getVillages, getLogin, getJwtForUser, postNewUser };
+  function addToFaves(id: number) {
+	console.log("add to faves called");
+	alert("add to faves called");
+}
+
+export { getVillages, getLogin, getJwtForUser, postNewUser, addToFaves };

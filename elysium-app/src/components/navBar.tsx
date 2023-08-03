@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, StarIcon } from '@heroicons/react/24/outline';
+import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
+import { getJwtForUser } from '../services/API';
 import photo from '../img/elysium-logo.png';
 import userLogo from '../img/user.png';
 import LoginPopup from './loginPopup';
-import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../App.css';
-import { getJwtForUser } from '../services/API';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
