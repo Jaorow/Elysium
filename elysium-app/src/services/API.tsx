@@ -25,6 +25,7 @@ interface LoginResponse {
 	username: string;
 	password: string;
 	jwt: string;
+	villages: Village[];
   }
 
   const getLogin = async (username: string, password: string): Promise<LoginResponse> => {
@@ -134,5 +135,19 @@ interface LoginResponse {
 	// alert(response.json());
   }  
 
+//   Get user at /api/User/username/{username}
+  const getUser = async (username: string): Promise<User> => {
+	try {
+		const response = await fetch(connectionString + "User/username/"+username);
+		const data = await response.json();
+		const user: User = data as User;
+		return user;
+	} catch (error) {
+		console.error("There was an error!", error);
+		// Handle error (e.g., show an error message to the user)
+		return { username: "", password: "", jwt: "", villages: [] };
+	}
 
-export {getVillages, getLogin, getJwtForUser, postNewUser, addToFaves};
+  }
+
+export {getVillages, getLogin, getJwtForUser, postNewUser, addToFaves, getUser};
