@@ -149,6 +149,36 @@ namespace API.Controllers
             return NoContent();
         }
 
+
+        [HttpPost("username/{username}/FavoriteVillage/{villageId}")]
+        public async Task<IActionResult> AddFavoriteVillage(string username, long villageId)
+        {
+            var user = await _context.Users
+                .Include(u => u.villages) // Include the villages navigation property in the query
+                .FirstOrDefaultAsync(u => u.username == username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (!user.villages.Any(v => v.id == villageId))
+            {
+                var village = await _context.Villages.FindAsync(villageId);
+                if (village != null)
+                {
+                    user.villages.Add(village);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return NotFound("Village not found");
+                }
+            }
+
+            return NoContent();
+        }
+
         private bool UserExists(long id)
         {
             return (_context.Users?.Any(e => e.id == id)).GetValueOrDefault();

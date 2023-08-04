@@ -13,6 +13,7 @@ namespace API.Models
         }
 
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Village> Villages { get; set; } = null!;
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
