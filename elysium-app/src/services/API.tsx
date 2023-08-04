@@ -121,7 +121,7 @@ interface LoginResponse {
   const addToFaves = async (villageId: number, username: string) => {
 		// POST: api/User/bob/village/1
 		console.log("add to faves called");
-		const response = await fetch(connectionString + "User/"+username+"/village/"+villageId, {
+		const response = await fetch(connectionString + "User/username/"+username+"/FavoriteVillage/"+villageId, {
 			method: "POST",
 			});
 		console.log(response);
