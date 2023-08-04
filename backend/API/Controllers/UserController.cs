@@ -149,35 +149,39 @@ namespace API.Controllers
             return NoContent();
         }
 
+// POST: api/User/jamie/FavoriteVillage/10
+[HttpPost("username/{username}/FavoriteVillage/{villageId}")]
+public async Task<IActionResult> AddFavoriteVillage(string username, long villageId)
+{
+    var user = await _context.Users
+        .Include(u => u.villages) // Include the villages navigation property in the query
+            .ThenInclude(v => v.Amenities) // Include the Amenities navigation property for each Village
+        .FirstOrDefaultAsync(u => u.username == username);
 
-        [HttpPost("username/{username}/FavoriteVillage/{villageId}")]
-        public async Task<IActionResult> AddFavoriteVillage(string username, long villageId)
+    if (user == null)
+    {
+        return NotFound();
+    }
+
+    if (!user.villages.Any(v => v.id == villageId))
+    {
+        var village = await _context.Villages.FirstOrDefaultAsync(v => v.id == villageId);
+
+        if (village != null)
         {
-            var user = await _context.Users
-                .Include(u => u.villages) // Include the villages navigation property in the query
-                .FirstOrDefaultAsync(u => u.username == username);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            if (!user.villages.Any(v => v.id == villageId))
-            {
-                var village = await _context.Villages.FindAsync(villageId);
-                if (village != null)
-                {
-                    user.villages.Add(village);
-                    await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    return NotFound("Village not found");
-                }
-            }
-
-            return NoContent();
+            user.villages.Add(village);
+            await _context.SaveChangesAsync();
+            return Ok("Added to favorites");
         }
+        else
+        {
+            return NotFound("Village not found for village id = " + villageId);
+        }
+    }
+
+    return Ok("added to favorites");
+}
+
 
         private bool UserExists(long id)
         {
