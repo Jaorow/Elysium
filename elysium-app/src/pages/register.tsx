@@ -118,7 +118,3 @@ const Register: React.FC = () => {
 };
   
 export default Register;
-function forceUpdate() {
-  throw new Error('Function not implemented.');
-}
-

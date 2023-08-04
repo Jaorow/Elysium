@@ -116,9 +116,23 @@ interface LoginResponse {
 	return randomString;
   }
 
-  function addToFaves(id: number) {
-	console.log("add to faves called");
-	alert("add to faves called");
-}
+//   const postNewUser = async (username: string, password: string): Promise<registerResponse> => {
 
-export { getVillages, getLogin, getJwtForUser, postNewUser, addToFaves };
+  const addToFaves = async (villageId: number, username: string) => {
+		// POST: api/User/bob/village/1
+		console.log("add to faves called");
+		const response = await fetch(connectionString + "User/"+username+"/village/"+villageId, {
+			method: "POST",
+			});
+		console.log(response);
+		// alert(response.json());
+
+
+	// console.log("add to faves called");
+	// const response = await fetch(connectionString + "Village/"+id);
+
+	// alert(response.json());
+  }  
+
+
+export {getVillages, getLogin, getJwtForUser, postNewUser, addToFaves};

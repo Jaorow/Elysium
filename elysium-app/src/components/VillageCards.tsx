@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getVillages, addToFaves } from '../services/API';
 import { Village } from '../models/Village';
-import { Link } from 'react-router-dom';
 import { StarIcon } from '@heroicons/react/24/outline';
-
+import Cookies from 'js-cookie';
+import { User } from '../models/User';
 
 function VillageCards() {
   const [villages, setVillages] = useState<Village[]>([]);
@@ -24,7 +24,15 @@ function VillageCards() {
 
   	const handleAddToFaves = async (id: number) => {
 		try {
-			addToFaves(id);
+			const user = Cookies.get('username') ?? "";
+
+			if (user === "" ){
+				alert("You must be logged in to add to favorites");
+				return;
+			}
+			
+			addToFaves(id,user);
+
 		} catch (error) {
 			console.log('Error adding to favorites');
 		}
@@ -40,14 +48,12 @@ function VillageCards() {
 
 				<div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-6">
 					{villages.map((village) => (
-						<div key={village.id} className="group aspect-h-1 aspect-w-1 w-full overflow-hidden hover:shadow-2xl rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-						{/* <Link to={`/villages/${village.id}`} className="block w-full h-full"> */}
+						<div key={village.id} className="group aspect-h-1 aspect-w-1 w-full overflow-hidden shadow-xl hover:shadow-2xl rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
 						<div className="block w-full h-full">
-		
+
 
 								<img className="h-1/2 w-full object-cover object-center " src={village.imageUrl} alt={village.name} />
-								
-								<div className='flex-grow'>
+
 
 								<button
 									type="button"
@@ -58,11 +64,10 @@ function VillageCards() {
 									<StarIcon className="h-6 w-6" aria-hidden="true" />
 								</button>
 
-									<h1 className="text-sm text-gray-700">{village.name}</h1>
-									<h2 className="text-sm text-gray-700 py-10">{village.location}</h2>
-									<p className='text-sm text-gray-700'>{village.description}</p>
-								</div>
-							{/* </Link> */}
+								<h1 className=" text-gray-700">{village.name}</h1>
+								<h2 className=" text-gray-700 py-10">{village.location}</h2>
+								<p className=' text-gray-700'>{village.description}</p>
+
 						</div>
 					</div>
 				))}
