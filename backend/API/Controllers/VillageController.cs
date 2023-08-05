@@ -89,7 +89,7 @@ namespace API.Controllers
 
         // POST: api/Village
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<Village>> PostVillage(Village village)
         {
             if (_context.Villages == null)
