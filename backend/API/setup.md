@@ -55,6 +55,6 @@ dotnet-aspnet-codegenerator controller -name ListController -async -api -m ListI
 
 
 ## Problems encountered  
-- not connecting components in get method, 
+- not connecting components in get method,
   - get method would constantly return empty amenities list
   - fixed by adding ```.include()``` to the get methods

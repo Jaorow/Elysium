@@ -97,6 +97,38 @@ namespace API.Controllers
             return CreatedAtAction("GetUser", new { id = user.id }, user);
         }
 
+        // GET: api/User/username
+        [HttpGet("username/{username}")]
+        public async Task<ActionResult<User>> GetUserByUsername(string username)
+        {
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+          var user = await _context.Users.Include(u => u.villages).FirstOrDefaultAsync(u => u.username == username);
+          if (user == null)
+          {
+              return NotFound();
+          }
+          return user;
+        }
+
+        // GET: api/User/usernames
+        [HttpGet("usernames")]
+        public async Task<ActionResult<IEnumerable<string>>> GetUsernames()
+        {
+          if (_context.Users == null)
+          {
+              return NotFound();
+          }
+          var usernames = await _context.Users.Select(u => u.username).ToListAsync();
+          if (usernames == null)
+          {
+              return NotFound();
+          }
+          return usernames;
+        }
+
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
@@ -116,6 +148,40 @@ namespace API.Controllers
 
             return NoContent();
         }
+
+// POST: api/User/jamie/FavoriteVillage/10
+[HttpPost("username/{username}/FavoriteVillage/{villageId}")]
+public async Task<IActionResult> AddFavoriteVillage(string username, long villageId)
+{
+    var user = await _context.Users
+        .Include(u => u.villages) // Include the villages navigation property in the query
+            .ThenInclude(v => v.Amenities) // Include the Amenities navigation property for each Village
+        .FirstOrDefaultAsync(u => u.username == username);
+
+    if (user == null)
+    {
+        return NotFound();
+    }
+
+    if (!user.villages.Any(v => v.id == villageId))
+    {
+        var village = await _context.Villages.FirstOrDefaultAsync(v => v.id == villageId);
+
+        if (village != null)
+        {
+            user.villages.Add(village);
+            await _context.SaveChangesAsync();
+            return Ok("Added to favorites");
+        }
+        else
+        {
+            return NotFound("Village not found for village id = " + villageId);
+        }
+    }
+
+    return Ok("added to favorites");
+}
+
 
         private bool UserExists(long id)
         {
