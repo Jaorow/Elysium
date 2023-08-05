@@ -56,7 +56,7 @@ const Compare: React.FC = () => {
 	};
 
   if (villages.length === 0) {
-    return <div>Loading...</div>;
+    return <div className=' p-100'>Loading...</div>;
   }
 	return (
 		<div className="bg-white">
