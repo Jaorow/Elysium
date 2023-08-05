@@ -93,7 +93,7 @@ const Register: React.FC = () => {
 
           <div className="flex items-center justify-center">
             <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a href="/" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Already have an account? Sign in
               </a>
             </div>

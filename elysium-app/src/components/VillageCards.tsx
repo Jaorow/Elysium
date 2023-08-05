@@ -3,7 +3,6 @@ import { getVillages, addToFaves } from '../services/API';
 import { Village } from '../models/Village';
 import { StarIcon } from '@heroicons/react/24/outline';
 import Cookies from 'js-cookie';
-import { User } from '../models/User';
 
 function VillageCards() {
   const [villages, setVillages] = useState<Village[]>([]);

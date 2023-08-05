@@ -3,8 +3,6 @@ import { getVillages, addToFaves, getUser } from '../services/API';
 import { Village } from '../models/Village';
 import { StarIcon } from '@heroicons/react/24/outline';
 import Cookies from 'js-cookie';
-import { User } from '../models/User';
-import { forEachChild } from 'typescript';
 
 
 const Compare: React.FC = () => {
@@ -73,7 +71,7 @@ const Compare: React.FC = () => {
 
 								<img className="h-1/2 w-full object-cover object-center " src={village.imageUrl} alt={village.name} />
 
-
+{/* 
 								<button
 									type="button"
 									onClick={() => handleAddToFaves(village.id)}
@@ -81,7 +79,7 @@ const Compare: React.FC = () => {
 								>
 									<span className="sr-only">View Favorites</span>
 									<StarIcon className="h-6 w-6" aria-hidden="true" />
-								</button>
+								</button> */}
 
 								<h1 className=" text-gray-700">{village.name}</h1>
 								<h2 className=" text-gray-700 py-10">{village.location}</h2>
