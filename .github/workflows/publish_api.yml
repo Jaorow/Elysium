@@ -28,6 +28,9 @@ jobs:
       - name: Move published files to root directory
         run: mv ${{env.DOTNET_ROOT}}/myapp/* .
 
+      - name: Print out file structure
+        run: ls -R
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
