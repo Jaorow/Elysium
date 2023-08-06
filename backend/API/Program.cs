@@ -46,4 +46,6 @@ app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.MapFallbackToFile("index.html");
+
 app.Run();
