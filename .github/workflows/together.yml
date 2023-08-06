@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: web-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: .
 
 
   deploy:
@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: web-app
-          # path: /myapp
+          path: /myapp
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
