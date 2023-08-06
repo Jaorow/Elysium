@@ -5,7 +5,7 @@ import Header from './components/navBar';
 import Compare from "./pages/Compare";
 import VillageCards from './components/VillageCards';
 import Help from './pages/Help';
-import Register from './pages/Register';
+import Register from './Register';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 

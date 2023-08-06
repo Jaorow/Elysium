@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import { Link, redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import '../App.css';
-import { postNewUser } from '../services/API';
+import { postNewUser } from './services/API';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
