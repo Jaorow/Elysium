@@ -17,7 +17,25 @@
 }
 
 .header-logo{
+  position: relative;
   transform: translate(-30px,30px) scale(4);
+}
+
+body{
+  padding-top: 60px;
+}
+/* Apply scaling and translation for smaller screens */
+@media screen and (max-width: 1350px) {
+  .header-logo {
+    transform: scale(2);
+  }
+}
+
+@media (max-width: 640px) {
+  .header-logo{
+    transform: translateY(30px) scale(4);
+  }
+
 }
 
 .navbar-background{
