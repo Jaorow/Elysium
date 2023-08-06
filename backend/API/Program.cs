@@ -34,7 +34,21 @@ builder.Services.AddScoped<UserContext>(provider =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// configuation for CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
