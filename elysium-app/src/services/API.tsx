@@ -44,7 +44,6 @@ interface LoginResponse {
 	console.log(user);
 
 	if (user.password === password) {
-	  // Replace the 'test' value with the actual JWT obtained from your server
 	  const jwt = user.jwt;
 	  console.log("Login successful - "+{ isLoggedIn: true, jwt: jwt, username: username })
 	  return { isLoggedIn: true, jwt: jwt, username: username };
@@ -101,7 +100,6 @@ interface LoginResponse {
 	  }
 	} catch (error) {
 	  console.error("There was an error!", error);
-	  // Handle error (e.g., show an error message to the user)
 	  return { exists: false, jwt: "", username : "" };
 	}
   };
@@ -117,7 +115,6 @@ interface LoginResponse {
 	return randomString;
   }
 
-//   const postNewUser = async (username: string, password: string): Promise<registerResponse> => {
 
   const addToFaves = async (villageId: number, username: string) => {
 		// POST: api/User/bob/village/1
@@ -126,13 +123,6 @@ interface LoginResponse {
 			method: "POST",
 			});
 		console.log(response);
-		// alert(response.json());
-
-
-	// console.log("add to faves called");
-	// const response = await fetch(connectionString + "Village/"+id);
-
-	// alert(response.json());
   }  
 
 //   Get user at /api/User/username/{username}
@@ -144,7 +134,6 @@ interface LoginResponse {
 		return user;
 	} catch (error) {
 		console.error("There was an error!", error);
-		// Handle error (e.g., show an error message to the user)
 		return { username: "", password: "", jwt: "", villages: [] };
 	}
 
