@@ -1,7 +1,7 @@
 import { Village } from '../models/Village';
 
 
-var connectionString = 'http://elysium2.azurewebsites.net/api/';
+var connectionString = 'http://elysium3.azurewebsites.net/api/';
 // var connectionString = 'http://localhost:5129/api/';
 
 const getVillages = async (): Promise<Village[]> => {

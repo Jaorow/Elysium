@@ -48,7 +48,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// app.options("/parse", cors(), (req, res) => {
+//     res.sendStatus(204);
+// });
 
+// add app options
+// app.options('*', cors());
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
