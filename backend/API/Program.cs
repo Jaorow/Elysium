@@ -24,51 +24,26 @@ builder.Services.AddScoped<UserContext>(provider =>
 });
 
 
-// builder.Services.AddDbContext<VillageContext>(options =>
-//     options.UseInMemoryDatabase("Data Source=village.db"));
-
-// builder.Services.AddDbContext<UserContext>(options =>
-//     options.UseInMemoryDatabase("Data Source=user.db"));
-
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// configuation for CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
-});
 
 var app = builder.Build();
 
-// app.options("/parse", cors(), (req, res) => {
-//     res.sendStatus(204);
-// });
-
-// add app options
-// app.options('*', cors());
-app.UseCors("AllowAll");
-
-// Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-app.UseSwagger();
-app.UseSwaggerUI();
-// }
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
