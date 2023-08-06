@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, StarIcon } from '@heroicons/react/24/outline';
-import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getJwtForUser } from '../services/API';
 import photo from '../img/elysium-logo.png';
 import userLogo from '../img/user.png';
@@ -187,6 +187,7 @@ export default function Header() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
+                                href="/"
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                 onClick={handleLogout}
                               >

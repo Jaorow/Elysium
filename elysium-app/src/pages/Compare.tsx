@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getVillages, addToFaves, getUser } from '../services/API';
+import { getVillages, getUser } from '../services/API';
 import { Village } from '../models/Village';
-import { StarIcon } from '@heroicons/react/24/outline';
 import Cookies from 'js-cookie';
 
 
@@ -38,22 +37,6 @@ const Compare: React.FC = () => {
 
     fetchVillages();
   }, []);
-
-  	const handleAddToFaves = async (id: number) => {
-		try {
-			const user = Cookies.get('username') ?? "";
-
-			if (user === "" ){
-				alert("You must be logged in to add to favorites");
-				return;
-			}
-			
-			addToFaves(id,user);
-
-		} catch (error) {
-			console.log('Error adding to favorites');
-		}
-	};
 
   if (villages.length === 0) {
     return <div className=' p-100'>Loading...</div>;
