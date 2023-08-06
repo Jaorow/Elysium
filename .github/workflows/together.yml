@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: web-app
-          path: ${{env.DOTNET_ROOT}}/myapp  # Upload only the published directory
+          path: ${{env.DOTNET_ROOT}}/myapp  
 
   deploy:
       runs-on: ubuntu-latest
@@ -57,7 +57,6 @@ jobs:
           uses: actions/download-artifact@v2
           with:
             name: web-app
-            path: /myapp
 
         - name: Deploy to Azure Web App
           id: deploy-to-webapp
@@ -66,4 +65,4 @@ jobs:
             app-name: 'elysium3'
             slot-name: 'production'
             publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EDCB97879F1C42D29522481768EEDFA6 }}
-            package: /myapp
+            package: .
