@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './components/navBar';
 import Compare from "./pages/Compare";
 import VillageCards from './components/VillageCards';
-import Register from './pages/Register';
 import Help from './pages/Help';
+import Register from './pages/Register';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 
