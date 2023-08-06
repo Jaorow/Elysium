@@ -54,7 +54,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'elysium2'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FE5FF6EE95D04E4FA5FE4D3D1178ABD2 }}
+          app-name: 'elysium3'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_078aa8aa905244ca9ba71368533fc031 }}
           package: .
