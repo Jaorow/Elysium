@@ -42,7 +42,6 @@ jobs:
       - name: Move published files to root directory
         run: |
           mv ${{env.DOTNET_ROOT}}/myapp/* .
-          mv elysium-app/build/* .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
