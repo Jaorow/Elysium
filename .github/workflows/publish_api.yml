@@ -1,4 +1,4 @@
-name: Build and deploy ASP.Net Core app to Azure Web App - Elysium
+name: self build
 
 on:
   push:
@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'elysium3'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_078aa8aa905244ca9ba71368533fc031 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D4050E79602B4D9F96EC5F618E4590BF }}
           package: .
